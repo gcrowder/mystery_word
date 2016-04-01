@@ -1,4 +1,5 @@
 import random
+import os
 
 def greeting():
     print("Hello! Shall we play a word game?")
@@ -53,6 +54,7 @@ def is_guessed(mystery_word, guesses):
             maybe_word += letter
     return maybe_word == mystery_word
 
+#user guesses one letter per round. one letter input only, must be a character.
 def get_guess(guesses):
     guess = 'guess'
     while len(guess) > 1 or not guess.isalpha():
@@ -69,20 +71,28 @@ def game_logic(word_list):
     greeting()
     guesses = []
     difficulty = get_difficulty()
-    mystery_word = random.choice(make_appropriate_difficulty(all_the_words, difficulty)).lower() #choose random word from list of appropriate_difficulty words. make sure lower case.
+    mystery_word = random.choice(make_appropriate_difficulty(word_list, difficulty)).lower() #choose random word from list of appropriate_difficulty words. make sure lower case.
+    sys = os.system('clear')
     show_word(mystery_word, guesses)
-    missed_guess_count = 0
-    while missed_guess_count < 9:
-        print("Guesses remaining: ", 8 - missed_guess_count)
+    print()
+    missed_guess_list = []
+    while len(missed_guess_list) < 8:
+        print("Guesses remaining: ", (8 - len(missed_guess_list)))
         guesses.append(get_guess(guesses))
-        show_word(mystery_word, guesses)
         if is_guessed(mystery_word, guesses):
+            sys = os.system('clear')
+            show_word(mystery_word, guesses)
+            print("My word was: ", mystery_word)
             return 'WIN'
         else:
-            if guesses[-1] in mystery_word:
-                continue
-            else:
-                missed_guess_count += 1
+            if guesses[-1] not in mystery_word:
+                missed_guess_list.append(guesses[-1])
+        #print("Mystery Word: ", mystery_word, "guesses: ", guesses, "Wrong letters: ", missed_guess_list) #print debug
+        sys = os.system('clear')
+        show_word(mystery_word, guesses)
+        print("Wrong letters: ", ' '.join(missed_guess_list))
+
+    print("My word was: ", mystery_word)
     return 'LOSE'
 
 def result(state):
@@ -99,6 +109,7 @@ def is_play_again():
         return True
     else:
         print("Goodbye.")
+        sys = os.system('clear')
         return False
 
 
@@ -107,11 +118,12 @@ def main():
     all_the_words = get_words()
     again = True
     while again:
-        game_logic(all_the_words)
+        sys = os.system('clear')
+        state = game_logic(all_the_words)
+        result(state)
         again = is_play_again()
 
 
-#user guesses one letter per round. one letter input only, must be a character.
 
 if __name__ == "__main__":
     main()
