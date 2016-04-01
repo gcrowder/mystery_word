@@ -7,7 +7,7 @@ test_words = ['i', 'spoke', 'to', 'several', 'people', 'with', 'delayed', 'sleep
 
 class TestMysteryWord(unittest.TestCase):
 
-    def test_assert_equal_file(self):
+    def test_assert_equal_get_words(self):
         self.assertEqual(mystery_word.get_words('test.txt'), ['house', 'mouse', 'louse', 'douse', 'souse'])
 
     def test_assert_not_equal(self):
@@ -31,7 +31,8 @@ class TestMysteryWord(unittest.TestCase):
     def test_assert_not_equal_difficulty_3(self):
         self.assertNotEqual(mystery_word.make_appropriate_difficulty(test_words, 'HARD'), ['spoke', 'people', 'with', 'sleep', 'phase', 'that'])
 
-    
+    def test_assert_equal_show_word(self):
+        self.assertEqual(mystery_word.show_word('general', ['e', 'f', 'j', 'a', 'l', 'g']), ['g', 'e', '_', 'e', '_', 'a', 'l'])
 
 if __name__ == '__main__':
     unittest.main()

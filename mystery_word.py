@@ -43,6 +43,7 @@ def show_word(mystery_word, guesses):
         else:
             word.append('_')
     print(' '.join(word))
+    return word #for unit testing purposes
 
 def main():
     all_the_words = get_words()
