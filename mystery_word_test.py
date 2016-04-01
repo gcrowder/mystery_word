@@ -31,5 +31,7 @@ class TestMysteryWord(unittest.TestCase):
     def test_assert_not_equal_difficulty_3(self):
         self.assertNotEqual(mystery_word.make_appropriate_difficulty(test_words, 'HARD'), ['spoke', 'people', 'with', 'sleep', 'phase', 'that'])
 
+    
+
 if __name__ == '__main__':
     unittest.main()

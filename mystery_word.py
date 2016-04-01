@@ -35,14 +35,24 @@ def make_appropriate_difficulty(word_list, difficulty='EASY'):
                 appropriate_difficulty.append(word)
     return appropriate_difficulty
 
+def show_word(mystery_word, guesses):
+    word = []
+    for letter in mystery_word:
+        if letter in guesses:
+            word.append(letter)
+        else:
+            word.append('_')
+    print(' '.join(word))
 
 def main():
     all_the_words = get_words()
-    #get difficulty from user
-    #choose random word from list of appropriate_difficulty words
-    mystery_word = random.choice(make_appropriate_difficulty(all_the_words, difficulty))
-
+    difficulty = get_difficulty()
+    mystery_word = random.choice(make_appropriate_difficulty(all_the_words, difficulty)).lower() #choose random word from list of appropriate_difficulty words. make sure lower case.
+    print("Mystery Word: ", mystery_word, ", Difficulty : ", difficulty)
 
 #tell/show user the length of the mystery_word
 
 #user guesses one letter per round. one letter input only, must be a character.
+
+if __name__ == "__main__":
+    main()
