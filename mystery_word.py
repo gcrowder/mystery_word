@@ -45,6 +45,13 @@ def show_word(mystery_word, guesses):
     print(' '.join(word))
     return word #for unit testing purposes
 
+def is_guessed(mystery_word, guesses):
+    maybe_word = ''
+    for letter in mystery_word:
+        if letter in guesses:
+            maybe_word += letter
+    return maybe_word == mystery_word
+
 def main():
     all_the_words = get_words()
     difficulty = get_difficulty()
