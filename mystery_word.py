@@ -35,6 +35,7 @@ def make_appropriate_difficulty(word_list, difficulty='EASY'):
                 appropriate_difficulty.append(word)
     return appropriate_difficulty
 
+#tell/show user the length of the mystery_word
 def show_word(mystery_word, guesses):
     word = []
     for letter in mystery_word:
@@ -52,13 +53,63 @@ def is_guessed(mystery_word, guesses):
             maybe_word += letter
     return maybe_word == mystery_word
 
-def main():
-    all_the_words = get_words()
+def get_guess(guesses):
+    guess = 'guess'
+    while len(guess) > 1 or not guess.isalpha():
+        print("Guesses must be a single letter.")
+        guess = str(input("Please enter your guess: "))
+        if guess in guesses:
+            print("You already tried that guess. Try again.")
+            guess = 'guess'
+            continue
+    return guess
+
+
+def game_logic(word_list):
+    greeting()
+    guesses = []
     difficulty = get_difficulty()
     mystery_word = random.choice(make_appropriate_difficulty(all_the_words, difficulty)).lower() #choose random word from list of appropriate_difficulty words. make sure lower case.
-    print("Mystery Word: ", mystery_word, ", Difficulty : ", difficulty)
+    show_word(mystery_word, guesses)
+    missed_guess_count = 0
+    while missed_guess_count < 9:
+        print("Guesses remaining: ", 8 - missed_guess_count)
+        guesses.append(get_guess(guesses))
+        show_word(mystery_word, guesses)
+        if is_guessed(mystery_word, guesses):
+            return 'WIN'
+        else:
+            if guesses[-1] in mystery_word:
+                continue
+            else:
+                missed_guess_count += 1
+    return 'LOSE'
 
-#tell/show user the length of the mystery_word
+def result(state):
+    if state == 'WIN':
+        print("Hurray! You win!")
+        return "Hurray! You win!" #for unit test purposes
+    else:
+        print("I'm sorry. You failed to succeed. Perhaps watch more Wheel of Fortune?")
+
+def is_play_again():
+    again = input("Play again? Y/n? ").lower()
+    if again == 'y' or again == 'yes':
+        print("Here we go!")
+        return True
+    else:
+        print("Goodbye.")
+        return False
+
+
+
+def main():
+    all_the_words = get_words()
+    again = True
+    while again:
+        game_logic(all_the_words)
+        again = is_play_again()
+
 
 #user guesses one letter per round. one letter input only, must be a character.
 
