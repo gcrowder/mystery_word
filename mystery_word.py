@@ -109,7 +109,6 @@ def is_play_again():
         return True
     else:
         print("Goodbye.")
-        sys = os.system('clear')
         return False
 
 
