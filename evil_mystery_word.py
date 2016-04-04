@@ -113,7 +113,7 @@ def game_logic(word_list):
         mystery_dict = get_evil_dict(mystery_list, guesses)
         mystery_list = pick_evil_list(mystery_dict)
 
-    print("My word was: ", mystery_list[0]
+    print("My word was: ", mystery_list[0])
     return 'LOSE'
 
 def result(state):

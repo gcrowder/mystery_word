@@ -37,5 +37,6 @@ class TestMysteryWord(unittest.TestCase):
     def test_assert_true_is_guessed(self):
         self.assertTrue(mystery_word.is_guessed('spoke', ['r', 'o', 'k', 't', 's', 'e', 'p']))
 
+
 if __name__ == '__main__':
     unittest.main()

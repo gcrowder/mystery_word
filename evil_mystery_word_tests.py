@@ -38,8 +38,8 @@ class TestMysteryWord(unittest.TestCase):
     def test_assert_equal_get_evil_dict(self):
         self.assertEqual(evil_mystery_word.get_evil_dict(['echo', 'heal', 'best', 'lazy'], ['e']), {'lazy': -1, 'best': 1, 'echo': 0, 'heal': 1})
 
-    # def test_assert_equal_pick_evil_list(self):
-    #     self.assertEqual(evil_mystery_word.pick_evil_list({'lazy': -1, 'best': 1, 'echo': 0, 'heal': 1}), list({'best': 1, 'heal': 1}.keys()))
+    def test_assert_equal_pick_evil_list(self):
+        self.assertEqual(evil_mystery_word.pick_evil_list({'lazy': -1, 'best': 1, 'echo': 0, 'heal': 1}), list({'best': 1, 'heal': 1}.keys()))
 
 
 if __name__ == '__main__':
