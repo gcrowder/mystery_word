@@ -30,13 +30,16 @@ class TestMysteryWord(unittest.TestCase):
         self.assertNotEqual(evil_mystery_word.make_appropriate_difficulty(test_words, 'HARD'), ['spoke', 'people', 'with', 'sleep', 'phase', 'that'])
 
     def test_assert_equal_show_word(self):
-        self.assertEqual(evil_mystery_word.show_word('general', ['e', 'f', 'j', 'a', 'l', 'g']), ['g', 'e', '_', 'e', '_', 'a', 'l'])
+        self.assertEqual(evil_mystery_word.show_word(['general'], ['e', 'f', 'j', 'a', 'l', 'g']), ['g', 'e', '_', 'e', '_', 'a', 'l'])
 
     def test_assert_true_is_guessed(self):
-        self.assertTrue(evil_mystery_word.is_guessed('spoke', ['r', 'o', 'k', 't', 's', 'e', 'p']))
+        self.assertTrue(evil_mystery_word.is_guessed(['spoke']))
 
-    def test_assert_equal_get_evil_lists(self):
-        self.assertEqual(evil_mystery_word.get_evil_lists(['echo', 'heal', 'best', 'lazy'], ['e']), ['heal', 'best'])
+    def test_assert_equal_get_evil_dict(self):
+        self.assertEqual(evil_mystery_word.get_evil_dict(['echo', 'heal', 'best', 'lazy'], ['e']), {'lazy': -1, 'best': 1, 'echo': 0, 'heal': 1})
+
+    # def test_assert_equal_pick_evil_list(self):
+    #     self.assertEqual(evil_mystery_word.pick_evil_list({'lazy': -1, 'best': 1, 'echo': 0, 'heal': 1}), list({'best': 1, 'heal': 1}.keys()))
 
 
 if __name__ == '__main__':
